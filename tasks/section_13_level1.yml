@@ -5,6 +5,7 @@
     register: awk_empty_shadow
     changed_when: False
     failed_when: awk_empty_shadow.stdout != '' and lock_shadow_accounts == False
+    ignore_errors: yes
     tags:
       - section13
       - section13.1
@@ -13,6 +14,7 @@
     command: passwd -l '{{ item }}'
     with_items: "{{awk_empty_shadow.stdout_lines}}"
     when: lock_shadow_accounts == True
+    ignore_errors: yes
     tags:
       - section13
       - section13.1
