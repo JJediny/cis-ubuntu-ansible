@@ -2,6 +2,7 @@
 
   - name: 4.1.1 Restrict Core Dumps (Scored)
     lineinfile: dest='/etc/security/limits.conf' line="* hard core 0" state=present
+    ignore_errors: True
     tags:
       - section4
       - section4.1
@@ -13,6 +14,7 @@
         value=0
         state=present
     when: restrict_core_dumps == True
+    ignore_errors: True 
     tags:
       - section4
       - section4.1
@@ -21,6 +23,7 @@
   - name: 4.1.4 Restrict Core Dumps (stat file) (Scored)
     stat: path='/etc/init/apport.conf'
     register: apport_present
+    ignore_errors: True
     tags:
       - section4
       - section4.1
@@ -33,6 +36,7 @@
         state=present
         regexp='start on runlevel'
     when: apport_present.stat.exists == True
+    ignore_errors: True
     tags:
       - section4
       - section4.1
@@ -41,6 +45,7 @@
   - name: 4.1.6 Restrict Core Dumps (stat file) (Scored)
     stat: path='/etc/init/whoopsie.conf'
     register: whoopsie_present
+    ignore_errors: True
     tags:
       - section4
       - section4.1
@@ -53,6 +58,7 @@
         state=present
         regexp='start on runlevel'
     when: whoopsie_present.stat.exists == True
+    ignore_errors: True
     tags:
       - section4
       - section4.1
@@ -74,6 +80,7 @@
        value=2
        state=present
     when: enable_aslr
+    ignore_errors: True
     tags:
       - section4
       - section4.3
@@ -81,6 +88,7 @@
   - name: 4.4 Disable Prelink (check) (Scored)
     stat: path=/usr/sbin/prelink
     register: prelink_rc
+    ignore_errors: True
     tags:
       - section4
       - section4.4
@@ -88,6 +96,7 @@
   - name: 4.4 Disable Prelink (restore) (Scored)
     command: '/usr/sbin/prelink -ua'
     when: prelink_rc.stat.exists == True
+    ignore_errors: True
     tags:
       - section4
       - section4.4
@@ -95,6 +104,7 @@
   - name: 4.4 Disable Prelink (remove) (Scored)
     apt: purge=yes name='prelink' state=absent
     when: prelink_rc.stat.exists == True
+    ignore_errors: True
     tags:
       - section4
       - section4.4
