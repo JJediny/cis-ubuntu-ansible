@@ -37,7 +37,7 @@
       - section4
       - section4.5
 
-  - name: 4.5 Activate AppArmor (Kernel LSM - grub) (Scored)
+  - name: 4.5 Activate AppArmor (Kernel LSM grub) (Scored)
     lineinfile: >
         dest='/etc/default/grub'
         regexp="^GRUB_CMDLINE_LINUX=\"\""
