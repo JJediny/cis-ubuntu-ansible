@@ -21,7 +21,6 @@
       - section7
       - section7.1
       - section7.1.2
-      - section7.1.2.1
 
   - name: 7.1.2.2 Disable Send Packet Redirects (Scored)
     sysctl: >
@@ -33,7 +32,6 @@
       - section7
       - section7.1
       - section7.1.2
-      - section7.1.2.2
 
   - name: 7.2.1.1 Disable Source Routed Packet Acceptance (Scored)
     sysctl: >
@@ -45,7 +43,6 @@
       - section7
       - section7.2
       - section7.2.1
-      - section7.2.1.1
 
   - name: 7.2.1.2 Disable Source Routed Packet Acceptance (Scored)
     sysctl: >
@@ -57,7 +54,6 @@
       - section7
       - section7.2
       - section7.2.1
-      - section7.2.1.2
 
   - name: 7.2.2.1 Disable ICMP Redirect Acceptance (Scored)
     sysctl: >
@@ -69,7 +65,6 @@
       - section7
       - section7.2
       - section7.2.2
-      - section7.2.2.1
 
   - name: 7.2.2.2 Disable ICMP Redirect Acceptance (Scored)
     sysctl: >
@@ -81,7 +76,6 @@
       - section7
       - section7.2
       - section7.2.2
-      - section7.2.2.2
 
   - name: 7.2.3.1 Disable Secure ICMP Redirect Acceptance (Scored)
     sysctl: >
@@ -93,7 +87,6 @@
       - section7
       - section7.2
       - section7.2.3
-      - section7.2.3.1
 
   - name: 7.2.3.2 Disable Secure ICMP Redirect Acceptance (Scored)
     sysctl: >
@@ -105,7 +98,6 @@
       - section7
       - section7.2
       - section7.2.3
-      - section7.2.3.2
 
   - name: 7.2.4.1 Log Suspicious Packets (Scored)
     sysctl: >
@@ -117,7 +109,6 @@
       - section7
       - section7.2
       - section7.2.4
-      - section7.2.4.1
 
   - name: 7.2.4.2 Log Suspicious Packets (Scored)
     sysctl: >
@@ -129,7 +120,16 @@
       - section7
       - section7.2
       - section7.2.4
-      - section7.2.4.2
+
+  - name: 7.2.4.3 Log Suspicious Packets (flushing tables) (Scored)
+    sysctl: >
+      name=net.ipv4.route.flush
+      value=1
+      state=present
+    tags:
+      - section7
+      - section7.2
+      - section7.2.4
 
   - name: 7.2.5 Enable Ignore Broadcast Requests (Scored)
     sysctl: >
@@ -163,7 +163,6 @@
       - section7
       - section7.2
       - section7.2.7
-      - section7.2.7.1
 
   - name: 7.2.7.2 Enable RFC-recommended Source Route Validation (Scored)
     sysctl: >
@@ -175,7 +174,6 @@
       - section7
       - section7.2
       - section7.2.7
-      - section7.2.7.2
 
   - name: 7.2.8 Enable TCP SYN Cookies (Scored)
     sysctl: >
@@ -199,7 +197,6 @@
       - section7
       - section7.3
       - section7.3.1
-      - section7.3.1.1
 
   - name: 7.3.1.2 Disable IPv6 Router Advertisements (Not Scored)
     sysctl: >
@@ -211,7 +208,6 @@
       - section7
       - section7.3
       - section7.3.1
-      - section7.3.1.2
 
   - name: 7.3.2.1 Disable IPv6 Redirect Acceptance (Not Scored)
     sysctl: >
@@ -223,7 +219,6 @@
       - section7
       - section7.3
       - section7.3.2
-      - section7.3.2.1
 
   - name: 7.3.2.2 Disable IPv6 Redirect Acceptance (Not Scored)
     sysctl: >
@@ -235,7 +230,6 @@
       - section7
       - section7.3
       - section7.3.2
-      - section7.3.2.2
 
   - name: 7.3.3 Disable IPv6 (Not Scored)
     sysctl: >
@@ -337,7 +331,7 @@
       - section7
       - section7.6
 
-  - name: 7.7 Ensure Firewall is active (install) (Scored)
+  - name: 7.7.1 Ensure Firewall is active (install) (Scored)
     apt: >
         name=ufw
         state=present
@@ -347,7 +341,7 @@
       - section7
       - section7.7
 
-  - name: 7.7 Ensure Firewall is active (Scored)
+  - name: 7.7.2 Ensure Firewall is active (Scored)
     service: >
         name=ufw
         state=started
