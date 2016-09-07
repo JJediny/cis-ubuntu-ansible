@@ -35,7 +35,7 @@ Create a placeholder to describe your machine:
 ```bash
 $ mkdir -p ansible/roles-ubuntu/roles
 $ cd ansible/roles-ubuntu
-$ git clone https://github.com/awailly/cis-ubuntu-ansible.git roles/cis
+$ git clone https://github.com/GSA/cis-ubuntu-ansible.git roles/cis
 ```
 
 Create a playbook in the _roles-ubuntu_ folder:
@@ -53,7 +53,7 @@ EOF
 
 You have to tune the environment to match your security requirements. The default is very restrictive and will perform strong modifications on the system. All requirements are enabled and may not work. For example the rsyslog server address have to be defined to respect the CIS rule.
 
-*Read `default/main.yml` file and set your variables in `vars/main.yml`*
+*Read `defaults/main.yml` file and set your variables in `vars/main.yml`*
 
 For the CI tests we only create specific files for the environment (see `tests/travis_defaults.yml`) in the `vars/` directory.
 
